@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lux Bakery Gift</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Lux Bakery Gift</h1>
+        <nav class="room-tabs" aria-label="Rooms">
+          <button class="room-tab is-on" id="show-room-1" type="button">Room 1</button>
+          <button class="room-tab is-locked" id="show-room-2" type="button" title="Opens after PayPal approval in Room 1" disabled>Room 2 🔒</button>
+          <button class="room-tab" id="show-room-3" type="button">Room 3</button>
+        </nav>
+        <p id="room-title">Jane's SI</p>
+        <label class="limit-row" for="limit-input">Your cap: max $
+          <input id="limit-input" type="number" min="0" max="100" step="1" value="8" />
+        </label>
+        <p class="limit-hint is-waiting" id="limit-hint">Change the cap on the first screen.</p>
+        <button class="restart is-waiting" id="restart" type="button" inert>Back to the start to change the cap</button>
+      </header>
+
+      <section class="room-two" id="room-two" hidden>
+        <p class="summary-card" id="summary-card"></p>
+        <button class="earlier" id="show-earlier" type="button">Show earlier chat</button>
+        <div id="earlier-slot" hidden></div>
+        <div id="handoff-lines"></div>
+        <p class="paypal-response" id="paypal-response" hidden></p>
+        <p class="handoff-caption" id="handoff-caption" hidden></p>
+      </section>
+
+      <section class="room-three" id="room-three" hidden>
+        <button class="restart" id="restart-room-3" type="button">Restart Room 3</button>
+        <label class="limit-row" for="shopping-cap">Shopping cap: max $
+          <input id="shopping-cap" type="number" min="0" max="100" step="1" value="8" />
+        </label>
+        <label class="limit-row" for="support-cap">Support cap: max $
+          <input id="support-cap" type="number" min="1" max="10000" step="1" value="5" inputmode="numeric" />
+        </label>
+        <article class="video-card">
+          <figure class="clip-slot room3-clip">
+            <video id="room3-steam" muted autoplay loop playsinline poster="/bread-photo.jpg"></video>
+            <img id="room3-steam-still" src="/bread-photo.jpg" alt="Warm bread with gentle steam" hidden />
+          </figure>
+          <p class="creator">Lux Baker</p>
+          <div class="video-actions">
+            <p class="heart-ready" id="heart-ready">Press the heart when you're ready.</p>
+            <button class="video-hit is-heart is-beating" id="video-heart" type="button" aria-label="Heart">❤️</button>
+          </div>
+        </article>
+        <div id="support-lines"></div>
+        <div class="choices" id="support-choices" hidden>
+          <button class="choice" id="support-money" type="button">1. 💸 Send $3 support</button>
+          <button class="choice" id="support-custom" type="button">2. 💸 Choose another amount</button>
+          <button class="choice" id="support-bread" type="button">3. 🍞 Try this bread (for you or a friend)</button>
+          <button class="choice" id="support-no" type="button">4. No thanks</button>
+        </div>
+        <div class="amount-panel" id="support-amount" hidden>
+          <label class="limit-row" for="support-cap-panel">Your support cap: max $
+            <input id="support-cap-panel" type="number" min="1" max="10000" step="1" value="5" inputmode="numeric" />
+          </label>
+          <div id="support-amount-picks">
+            <div class="choices" id="support-quick"></div>
+            <label class="limit-row" for="support-own-amount">Enter my own amount $
+              <input id="support-own-amount" type="number" min="1" max="10000" step="1" inputmode="numeric" />
+            </label>
+            <div class="choices" id="support-use-row">
+              <button class="choice" id="support-use-amount" type="button">Use this amount</button>
+            </div>
+          </div>
+          <div class="choices" id="support-amount-choice" hidden>
+            <button class="choice" id="support-amount-raise" type="button">1. Raise my cap and send</button>
+            <button class="choice" id="support-amount-smaller" type="button">2. Pick a smaller amount</button>
+          </div>
+        </div>
+        <div class="choices" id="support-who" hidden>
+          <button class="choice" id="who-me" type="button">1. 🙋 For me</button>
+          <button class="choice" id="who-friend" type="button">2. 💌 For a friend in my contacts</button>
+        </div>
+        <div class="choices" id="support-breads" hidden></div>
+        <div class="choices" id="support-limit" hidden>
+          <button class="choice" id="support-raise" type="button">1. Raise the cap and continue</button>
+          <button class="choice" id="support-within" type="button">2. Pick within the cap</button>
+        </div>
+        <p class="summary-card" id="support-summary" hidden></p>
+        <button class="gift" id="support-pay" type="button" hidden disabled>Send with PayPal</button>
+        <p class="paypal-response" id="support-paypal" hidden></p>
+        <p class="handoff-caption" id="support-caption" hidden></p>
+        <div id="support-after"></div>
+        <div class="choices" id="support-again" hidden>
+          <button class="choice" id="watch-again" type="button">Back to the start of Room 3</button>
+        </div>
+      </section>
+
+      <section class="chat" id="chat">
+        <figure class="photo clip-slot room1-clip">
+          <video id="room1-hero" hidden muted autoplay loop playsinline poster="/bread-photo.jpg"></video>
+          <img id="room1-still" src="/bread-photo.jpg" alt="Warm bread from the video call scene" />
+        </figure>
+        <p class="scene-note">
+          On a video chat, Avon watches Jane eat bread. Avon's eyes are sparkling.
+          “Is it moist? Is it sweet? Crispy outside, soft inside? That looks so good...”
+        </p>
+        <div id="lines"></div>
+        <div class="choices" id="choices" hidden>
+          <button class="choice" id="choice-no" type="button">1. No thanks</button>
+          <button class="choice" id="choice-options" type="button">2. Show the breads and prices</button>
+          <button class="choice" id="choice-best" type="button">3. Yes, go ahead within my cap (max $8)</button>
+          <button class="choice" id="choice-consult" type="button">4. Yes, check with me once more before paying</button>
+        </div>
+        <div class="choices" id="consult" hidden>
+          <button class="choice" id="consult-yes" type="button">1. Four-Pack sounds good. Go ahead!</button>
+          <button class="choice" id="consult-options" type="button">2. Show the other options</button>
+        </div>
+        <div class="choices" id="limit-choice" hidden>
+          <button class="choice" id="limit-raise" type="button">1. Raise the cap and continue with Four-Pack</button>
+          <button class="choice" id="limit-within" type="button">2. Pick within the cap</button>
+        </div>
+        <div class="choices" id="options" hidden></div>
+        <ol class="pay-log" id="pay-log" hidden></ol>
+        <p class="performance" id="performance-note" hidden>
+          This is a visual demo. A saved card is blocked on this sandbox app.
+          PayPal sandbox opens in a new browser window, and a person has to confirm there.
+        </p>
+        <button class="gift" id="gift-button" type="button" hidden disabled>
+          Send as a gift
+        </button>
+      </section>
+    <div id="si-ball" hidden></div>
+
+      <p class="note" id="status">Getting PayPal sandbox ready…</p>
+    </main>
+    <p class="si-thinking" id="si-thinking" hidden>SI is thinking…</p>
+    <p class="si-badge" id="si-badge">SI: offline script</p>
+
+    <script src="/app.js"></script>
+    <script
+      async
+      src="https://www.sandbox.paypal.com/web-sdk/v6/core"
+      onload="onPayPalWebSdkLoaded()"></script>
+  </body>
+</html>
