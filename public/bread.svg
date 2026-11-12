@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="A golden loaf of bread">
+  <rect width="640" height="420" fill="#f6e7c1"/>
+  <ellipse cx="320" cy="250" rx="230" ry="110" fill="#e7b15a"/>
+  <ellipse cx="320" cy="236" rx="210" ry="92" fill="#f0c56d"/>
+  <path d="M150 230c40-70 90-100 170-100s130 30 170 100" fill="none" stroke="#c9843a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M210 228c24-46 52-66 110-66s86 20 110 66" fill="none" stroke="#d39245" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="250" cy="248" rx="18" ry="10" fill="#fff3d6" opacity="0.7"/>
+</svg>

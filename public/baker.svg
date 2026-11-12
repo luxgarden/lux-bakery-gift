@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Golden buns and warm bread">
+  <rect width="640" height="420" fill="#f6e7c1"/>
+  <rect x="70" y="80" width="500" height="270" rx="28" fill="#f3d7b0"/>
+  <rect x="110" y="120" width="420" height="180" rx="16" fill="#fffaf3"/>
+  <rect x="250" y="350" width="140" height="18" rx="8" fill="#c9843a"/>
+  <path d="M210 230c30-48 70-70 110-70s80 22 110 70c-30 18-70 28-110 28s-80-10-110-28z" fill="#e7b15a"/>
+  <path d="M250 214c18-24 42-36 70-36s52 12 70 36" fill="none" stroke="#c9843a" stroke-width="8" stroke-linecap="round"/>
+</svg>
